@@ -13,6 +13,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import CloseIcon from '@material-ui/icons/Close';
 import CreateIcon from '@material-ui/icons/Create';
+import 'react-responsive-modal/styles.css';
+import { Modal } from 'react-responsive-modal';
 
 const useStyle = makeStyles((theme) => ({
   containerClass: {
@@ -54,6 +56,23 @@ const useStyle = makeStyles((theme) => ({
     marginTop : "1rem",
     flexGrow: 1,
   },
+  deleteHistory:{
+    padding : " 10px 4px",
+    marginLeft : "74%",
+    postion : "relative",
+    top : "-5rem",
+    textDecoration : "none",
+    color : "white",
+    backgroundColor : "Blue",
+    // borderRadius : "15%"
+  
+
+  },
+  mdlBtn :{
+    padding : "3px 17px",
+    marginLeft : "50px"
+   
+  },
   todoHeader: {
     color: "purple",
     textDecoration:"double underLine",
@@ -66,10 +85,20 @@ function App() {
   const classes = useStyle();
 
   const [todos, setTodos] = useState([]);
-  // const [title, setInput] = useState("");
   const [error, setError] = useState();
   const [count ,setCount] = useState(0);
+  const [delCount ,setDelCount] = useState(0);
   const [todo, setTodo] = useState({});
+  const [showHist , setShowHist] = useState(false);
+  const [history , setDelHistory] = useState([]);
+  const [open , setOpen] = useState(false);
+
+  const onOpenModal = ()=>{
+    setOpen(true);
+  }
+  const onCloseModal = () =>{
+    setOpen(false);
+  }
 
   const handleAddTodo = () => {
     if(todo.id) {
@@ -78,11 +107,6 @@ function App() {
       setTodo("");
       setTodo([...todos])
 
-      /**
-       * find index of todo with id
-       * replace this todo with new todo having same id but new title
-       * replace new todo on index
-       */
     } else {
       addTodo()
     }
@@ -93,7 +117,6 @@ function App() {
       id: Math.floor(Math.random() * 10000),
       ...todo
     };
-    console.log(todoLocal);
     if ( todoLocal.title !== undefined && todoLocal.title !== "" ) {
       
       todos.push(todoLocal);
@@ -111,7 +134,13 @@ function App() {
   const removeTodo = item => {
     const Index = [...todos].filter( i => i.id !== item.id);
     setTodos(Index);
-    setCount(count - 1)
+    setDelCount(delCount + 1);
+    setCount(count - 1);
+
+    let arr = history;
+    arr.push(item);
+    setDelHistory(arr);
+   
   };
   
   const editTodo = ({id, title}) =>{
@@ -123,7 +152,6 @@ function App() {
   }
   
       const handleChange = (event) => {
-        console.log(todo);
         setTodo({
           ...todo,
           title: event.target.value
@@ -135,6 +163,15 @@ function App() {
           handleAddTodo();
         }
       };
+      const deleteHistory = (item) =>{
+        
+          setShowHist(true);
+
+          const Index = [...history].filter( i => i.id !== item.id);
+          setDelHistory(Index);
+          setDelCount(delCount-1);
+          onCloseModal();
+      }
       
       const list = () => {
           return <List >
@@ -152,7 +189,27 @@ function App() {
      
     </List>
   }
-  // console.log(todo)
+
+  const deleteList = () => {
+    return <List >
+    {history.map((del, i) => {
+    return  <ListItem key={i}>
+    <ListItemText className={classes.line} primary={del.title} />
+    <ListItemIcon  >
+    <CloseIcon onClick = {onOpenModal} />
+    
+    <Modal open={open} onClose = {onCloseModal} center>
+        <h2>Are you sure to Delete</h2>
+        <button className = {classes.mdlBtn} onClick = {()=>deleteHistory(del) }>Yes</button>
+        <button className = {classes.mdlBtn} onClick = {onCloseModal}>No</button>
+      </Modal>
+      
+    
+    </ListItemIcon>
+    </ListItem>
+})}
+</List>
+}
   return (
     
     <div className={classes.root}>
@@ -161,13 +218,16 @@ function App() {
         container className={classes.containerClass}
         >
         <Grid item xs={5} sm={5} md={5} lg={4}>
+          
           <Card className={classes.cardBackground} >
-            <CardContent>
+             { !showHist ? 
+             <CardContent>
              <Typography className={classes.todoHeader} color="textSecondary"  >{` ${
-               count == 0 ? `you have ${count} todo :- ( ` : `you have ${count} todo :- ) `
+               count ===0 ? `you have ${count} todo :- ( ` : `you have ${count} todo :- ) `
               }`} </Typography>
+               <a className={classes.deleteHistory} href ="#" onClick={deleteHistory}> Delete History</a>
               <div className ={classes.scroll}>
-              {list()}
+                {list()}
               </div>
                <div className ={classes.inputField}>
                 <TextField className={classes.inputarea}
@@ -183,10 +243,20 @@ function App() {
                   Submit
                 </Button>
               </div>
-            </CardContent>
-          </Card>
+            </CardContent > :
+            
+          <CardContent>
+             <Typography className={classes.todoHeader} color="textSecondary"  >
+               {` ${ count == 0 ? ` ${delCount + 1} Delete todo  ` : `you have ${count} Delete todos ` }`} </Typography>
+              <div>
+                {deleteList()}
+              </div>
+          </CardContent>}
+         
+          </Card>  
         </Grid>
       </Grid>
+      
     </div>
   );
 }
