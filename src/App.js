@@ -13,6 +13,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import CloseIcon from '@material-ui/icons/Close';
 import CreateIcon from '@material-ui/icons/Create';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
 
@@ -98,6 +99,9 @@ function App() {
   }
   const onCloseModal = () =>{
     setOpen(false);
+  }
+  const onShowHist =()=>{
+    setShowHist(false);
   }
 
   const handleAddTodo = () => {
@@ -246,6 +250,7 @@ function App() {
             </CardContent > :
             
           <CardContent>
+            <ArrowBackIcon onClick = {onShowHist}/>
              <Typography className={classes.todoHeader} color="textSecondary"  >
                {` ${ count == 0 ? ` ${delCount + 1} Delete todo  ` : `you have ${count} Delete todos ` }`} </Typography>
               <div>
