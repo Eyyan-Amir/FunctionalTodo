@@ -45,5 +45,16 @@
   height: 10vh;
   background-color: #282c34;
   color: blue;
-
+}
+/* #createIcon{
+  display: none;
+}
+#closeIcon{
+  display: none;
+}
+#doneIcon{
+  display: none;
+} */
+.MuiTypography-displayBlock {
+  display: flex !important;
 }
