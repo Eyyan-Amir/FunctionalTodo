@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/FunctionalTodo/static/css/main.24578a2f.chunk.css",
+    "main.js": "/FunctionalTodo/static/js/main.0c2f00eb.chunk.js",
+    "main.js.map": "/FunctionalTodo/static/js/main.0c2f00eb.chunk.js.map",
+    "runtime-main.js": "/FunctionalTodo/static/js/runtime-main.b590b049.js",
+    "runtime-main.js.map": "/FunctionalTodo/static/js/runtime-main.b590b049.js.map",
+    "static/css/2.26b8b167.chunk.css": "/FunctionalTodo/static/css/2.26b8b167.chunk.css",
+    "static/js/2.c15df539.chunk.js": "/FunctionalTodo/static/js/2.c15df539.chunk.js",
+    "static/js/2.c15df539.chunk.js.map": "/FunctionalTodo/static/js/2.c15df539.chunk.js.map",
+    "static/js/3.1f7ead2f.chunk.js": "/FunctionalTodo/static/js/3.1f7ead2f.chunk.js",
+    "static/js/3.1f7ead2f.chunk.js.map": "/FunctionalTodo/static/js/3.1f7ead2f.chunk.js.map",
+    "index.html": "/FunctionalTodo/index.html",
+    "static/css/2.26b8b167.chunk.css.map": "/FunctionalTodo/static/css/2.26b8b167.chunk.css.map",
+    "static/css/main.24578a2f.chunk.css.map": "/FunctionalTodo/static/css/main.24578a2f.chunk.css.map",
+    "static/js/2.c15df539.chunk.js.LICENSE.txt": "/FunctionalTodo/static/js/2.c15df539.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b590b049.js",
+    "static/css/2.26b8b167.chunk.css",
+    "static/js/2.c15df539.chunk.js",
+    "static/css/main.24578a2f.chunk.css",
+    "static/js/main.0c2f00eb.chunk.js"
+  ]
+}
