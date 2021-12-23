@@ -114,13 +114,7 @@ const useStyle = makeStyles((theme) => ({
 		color: "blue",
 	},
 	clearBtn: {
-		position: "absolute",
-		padding: " 8px 10px",
-		borderRadius: "7px",
-		marginLeft: "-200%",
-		textDecoration: "none",
-		color: "white",
-		backgroundColor: "Red",
+		marginRight: "14px",
 	},
 	todoHeader: {
 		color: "purple",
@@ -369,12 +363,17 @@ function App() {
 											onKeyDown={handleKey}
 											autoComplete='off'
 										/>
-										<Button variant='contained' color='primary' onClick={handleAddTodo}>
-											Submit
-											<a className={classes.clearBtn} href='#' onClick={clear}>
+										<div>
+											{/* <a  href='javascript:void(0)' >
 												Clear
-											</a>
-										</Button>
+											</a> */}
+											<Button variant='contained' className={classes.clearBtn} color='default' onClick={clear}>
+												Clear
+											</Button>
+											<Button variant='contained' color='primary' onClick={handleAddTodo}>
+												Submit
+											</Button>
+										</div>
 									</div>
 								</CardContent>
 							</>
